@@ -2,7 +2,7 @@
 import React, {useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import {signIn, signOut, useSession, getProviders } from 'next-auth';
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
   //暂时写死
@@ -10,26 +10,24 @@ const Nav = () => {
   const [ providers, setProviders ] = useState(null)
   const [ toggleDropdown, setToggleDropdown ] = useState(false)
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const res = await getProviders();
-  //     setProviders(res);
-  //   })()
-  // },[])
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })()
+  },[])
   return (
-    <nav className="flex-between w-full mb-16 pt-3">
-      <li>
-        <Link href="/" className="flex gap-2 flex-center">
-          <Image
-            src='/assets/images/logo.svg'
-            alt="logo"
-            width={30}
-            height={30}
-            className='object-contain'
-          />
-          <p className='logo_text'>promptBook</p>
-        </Link>
-
+    <nav className='flex-between w-full mb-16 pt-3'>
+      <Link href='/' className='flex gap-2 flex-center'>
+        <Image
+          src='/assets/images/logo.svg'
+          alt='logo'
+          width={30}
+          height={30}
+          className='object-contain'
+        />
+        <p className='logo_text'>PromptBox</p>
+      </Link>
         {/*PC navigation*/}
         <div className='sm:flex hidden'>
           { isUserLogin ?
@@ -43,10 +41,10 @@ const Nav = () => {
               </button>
               <Link href='/profile'>
                 <Image
-                  src='/assets/images/logo.svg'
+                  src={'/assets/images/grid.svg'}
                   width={37}
                   height={37}
-                  className='rounded-full'
+                  className='rounded-full border border-amber-300'
                   alt='profile'
                 />
               </Link>
@@ -67,16 +65,15 @@ const Nav = () => {
             )
           }
         </div>
-      </li>
       {/*mobile navigation*/}
-      <div className="sm:hidden flex relative">
+      <div className='sm:hidden flex relative'>
         { isUserLogin ?
           (<div className='flex'>
             <Image
-              src={'/assets/images/logo.svg'}
+              src={'/assets/images/grid.svg'}
               width={37}
               height={37}
-              className={'rounded-full'}
+              className='rounded-full'
               alt={'profile'}
               onClick={ () => setToggleDropdown( prev => !prev ) }
             />
@@ -100,13 +97,14 @@ const Nav = () => {
                    setToggleDropdown(false)
                    signOut()
                  }}
-                 className='mt-5 w-full black-btn'
+                 className='mt-5 w-full black_btn'
                >
                  Sign Out
                </button>
              </div>
             )}
-          </div>) :
+          </div>)
+          :
           <>
             { providers && Object.keys(providers).map((provider) =>
               (<button

@@ -30,7 +30,7 @@
 
 .main:after {
     content: "";
-    background-image: url("/assets/images/grid.svg");
+    background-image: url("/public/assets/images/grid.svg");
     z-index: 1;
     position: absolute;
     width: 100%;
@@ -46,9 +46,9 @@
     width: 100%;
     max-width: 640px;
     background-image: radial-gradient(
-            at 27% 37%,
-            hsla(215, 98%, 61%, 1) 0px,
-            transparent 0%
+      at 27% 37%,
+      hsla(215, 98%, 61%, 1) 0px,
+      transparent 0%
     ),
     radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
     radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
@@ -72,6 +72,7 @@
 }
 
 /* Tailwind Styles */
+
 .app {
     @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
 }
