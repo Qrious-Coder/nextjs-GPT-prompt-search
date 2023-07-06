@@ -6,7 +6,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
   //暂时写死
-  const isUserLogin = true;
+  const { data: session } = useSession()
   const [ providers, setProviders ] = useState(null)
   const [ toggleDropdown, setToggleDropdown ] = useState(false)
 
@@ -26,11 +26,11 @@ const Nav = () => {
           height={30}
           className='object-contain'
         />
-        <p className='logo_text'>PromptBox</p>
+        <span className='logo_text'>PromptBox</span>
       </Link>
         {/*PC navigation*/}
         <div className='sm:flex hidden'>
-          { isUserLogin ?
+          { session?.user ?
             (<div className='flex gap-3 md:gap-5'>
               <Link href='/create-prompt' className='black_btn'>
                 Create Prompt
@@ -41,7 +41,7 @@ const Nav = () => {
               </button>
               <Link href='/profile'>
                 <Image
-                  src={'/assets/images/grid.svg'}
+                  src={ session?.user.image }
                   width={37}
                   height={37}
                   className='rounded-full border border-amber-300'
@@ -67,10 +67,10 @@ const Nav = () => {
         </div>
       {/*mobile navigation*/}
       <div className='sm:hidden flex relative'>
-        { isUserLogin ?
+        { session?.user ?
           (<div className='flex'>
             <Image
-              src={'/assets/images/grid.svg'}
+              src={ session?.user.image }
               width={37}
               height={37}
               className='rounded-full'
