@@ -18,3 +18,4 @@
 ### Create API routes with Google Console
 - ref: Create API Routes: https://refine.dev/blog/nextauth-google-github-authentication-nextjs
 - 2023.07.10: 2:32:38
+- 2023.07.11: 2:48:04
