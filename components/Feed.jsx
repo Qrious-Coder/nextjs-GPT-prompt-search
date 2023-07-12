@@ -4,7 +4,7 @@ import PromptCard from '@components/PromptCard';
 
 const PromptCardList = ({ data, handleTagClick}) => {
   return (
-    <div className="mt-16 prompt_layout">
+    <div className='mt-16 prompt_layout'>
       { data.map((post) => {
         return (<PromptCard
           key={ post._id }
@@ -32,22 +32,22 @@ const Feed = () => {
   }, [])
 
   return (
-    <div>
-      <form className="relative w-full flex-center">
+    <section className="feed">
+      <form className="relative w-full flex-col flex-center">
         <input
           type="text"
           placeholder="search a tag or a username"
           value={ searchText }
           onChange={ handleSearchText }
           required
-          className="search-input peer"
+          className="search_input peer"
         />
         <PromptCardList
           data={ promptData }
           handleTagClick={() => {}}
         />
       </form>
-    </div>
+    </section>
   );
 };
 
